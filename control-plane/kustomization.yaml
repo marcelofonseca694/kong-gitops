@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../base
+
+helmCharts:
+- name: kong
+  repo: https://charts.konghq.com
+  version: 2.19.0 # Verifique a versão mais recente
+  releaseName: kong-cp
+  namespace: kong
+  valuesFile: values-cp.yaml

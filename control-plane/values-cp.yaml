@@ -1,0 +1,57 @@
+# Arquivo de valores para o Control Plane do Kong
+ingressController:
+  enabled: false
+
+image:
+  repository: kong
+  tag: "3.9.0"
+
+secretVolumes:
+- kong-cluster-cert
+
+env:
+  role: control_plane
+  cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
+  cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
+
+  # Configuração do banco de dados
+  database: postgres
+  pg_database: kong
+  pg_user: kong
+  pg_password: demo123
+  pg_host: kong-cp-postgresql.kong.svc.cluster.local
+  pg_ssl: "on"
+
+  # Senha do Kong Manager
+  password: kong_admin_password
+
+enterprise:
+  enabled: false
+  license_secret: kong-enterprise-license
+
+admin:
+  enabled: true
+  http:
+    enabled: true
+
+cluster:
+  enabled: true
+  tls:
+    enabled: true
+
+clustertelemetry:
+  enabled: true
+  tls:
+    enabled: true
+
+manager:
+  enabled: false
+
+proxy:
+  enabled: false
+
+# Banco de dados PostgreSQL para testes (remova em produção)
+postgresql:
+  enabled: true
+  auth:
+    password: demo123

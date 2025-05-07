@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong-control-plane
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/marcelofonseca694/kong-gitops.git
+    targetRevision: HEAD
+    path: control-plane
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kong
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=false
+  # Dependência do kong-base
+  # Só sincronizar depois que kong-base estiver sincronizado
+  dependsOn:
+  - name: kong-base
