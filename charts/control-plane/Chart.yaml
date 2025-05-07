@@ -1,0 +1,10 @@
+apiVersion: v2
+name: kong-control-plane
+description: Kong Gateway Control Plane
+type: application
+version: 0.1.0
+appVersion: "3.9.0"
+dependencies:
+- name: kong
+  version: "2.19.0"
+  repository: "https://charts.konghq.com"

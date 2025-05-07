@@ -8,7 +8,10 @@ spec:
   source:
     repoURL: https://github.com/marcelofonseca694/kong-gitops.git
     targetRevision: HEAD
-    path: control-plane
+    path: charts/control-plane
+    helm:
+      valueFiles:
+      - values-cp.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: kong
@@ -20,5 +23,5 @@ spec:
     - CreateNamespace=false
   # Dependência do kong-base
   # Só sincronizar depois que kong-base estiver sincronizado
-  dependsOn:
-  - name: kong-base
+  # dependsOn:
+  # - name: kong-base

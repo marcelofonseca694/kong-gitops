@@ -1,0 +1,10 @@
+apiVersion: v2
+name: kong-data-plane
+description: Kong Gateway Data Plane
+type: application
+version: 0.1.0
+appVersion: "3.9.0"
+dependencies:
+- name: kong
+  version: "2.19.0"
+  repository: "https://charts.konghq.com"
